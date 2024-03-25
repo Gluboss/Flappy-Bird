@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://brc4kwv0bkbic"]
+
+[ext_resource type="Texture2D" uid="uid://vqfudytuc4yi" path="res://Assets/GameOver.png" id="1_at1hn"]
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_isujs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qtjg2"]
+bg_color = Color(0.6, 0.0745098, 0.207843, 1)
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_isujs")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 32
+
+[node name="PointsLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+
+[node name="GameOverBox" type="VBoxContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/GameOverBox"]
+layout_mode = 2
+texture = ExtResource("1_at1hn")
+
+[node name="Panel" type="Panel" parent="MarginContainer/GameOverBox"]
+custom_minimum_size = Vector2(90, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qtjg2")
+
+[node name="Button" type="Button" parent="MarginContainer/GameOverBox/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -15.5
+offset_right = 37.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESTART
+"
+
+[connection signal="pressed" from="MarginContainer/GameOverBox/Panel/Button" to="." method="_on_button_pressed"]

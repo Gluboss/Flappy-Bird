@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://ukd5vnvf0mv4"]
+
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_5dcmw"]
+[ext_resource type="Texture2D" uid="uid://c8j2hgnnqb8ih" path="res://Assets/Background_PH.png" id="1_pv1du"]
+[ext_resource type="PackedScene" uid="uid://d0f4n7pwci65e" path="res://Scenes/gargoyle.tscn" id="1_rfdok"]
+[ext_resource type="PackedScene" uid="uid://bjt3dho6qb2i5" path="res://Scenes/ground.tscn" id="3_7w4pj"]
+[ext_resource type="PackedScene" uid="uid://cqxq2bwa40r2t" path="res://Scenes/pillar_spawner.tscn" id="4_26mtl"]
+[ext_resource type="PackedScene" uid="uid://brc4kwv0bkbic" path="res://Scenes/ui.tscn" id="6_puwpd"]
+
+[node name="Main" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_5dcmw")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_pv1du")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Ground" parent="." instance=ExtResource("3_7w4pj")]
+position = Vector2(0, 27)
+
+[node name="PillarSpawner" parent="." instance=ExtResource("4_26mtl")]
+
+[node name="Gargoyle" parent="." instance=ExtResource("1_rfdok")]
+
+[node name="UI" parent="." instance=ExtResource("6_puwpd")]

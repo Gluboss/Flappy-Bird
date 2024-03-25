@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://s6h3uefxm4ih"]
+
+[ext_resource type="Script" path="res://Scripts/pillars.gd" id="1_d6n2q"]
+[ext_resource type="Texture2D" uid="uid://bjqnop8ubsyb8" path="res://Assets/Pillar-solo.png" id="1_g1w4t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fumew"]
+size = Vector2(36, 73)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hiw0f"]
+size = Vector2(39, 73.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2oj4"]
+size = Vector2(12, 125)
+
+[node name="Pillars" type="Node2D"]
+script = ExtResource("1_d6n2q")
+
+[node name="TopPillar" type="Area2D" parent="."]
+position = Vector2(0, -100)
+
+[node name="Sprite2D" type="Sprite2D" parent="TopPillar"]
+rotation = 3.14159
+texture = ExtResource("1_g1w4t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopPillar"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_fumew")
+
+[node name="BottomPillar" type="Area2D" parent="."]
+position = Vector2(0, 100)
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomPillar"]
+texture = ExtResource("1_g1w4t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPillar"]
+shape = SubResource("RectangleShape2D_hiw0f")
+
+[node name="Score" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Score"]
+position = Vector2(27, -1)
+shape = SubResource("RectangleShape2D_y2oj4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="TopPillar" to="." method="_on_body_entered"]
+[connection signal="body_entered" from="BottomPillar" to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Score" to="." method="_on_point_scored"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
